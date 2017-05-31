@@ -1,0 +1,646 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Android开发代码规范 - zhuyuliang - 博客园</title>
+<link type="text/css" rel="stylesheet" href="Android开发代码规范_files/blog-common.css" />
+<link id="MainCss" type="text/css" rel="stylesheet" href="Android开发代码规范_files/bundle-CodingLife.css" />
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="Android开发代码规范_files/bundle-CodingLife-mobile.css" />
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zhuyuliang/rss" />
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zhuyuliang/rsd.xml" />
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zhuyuliang/wlwmanifest.xml" />
+<script async="" src="Android开发代码规范_files/analytics.js"></script><script src="Android开发代码规范_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'zhuyuliang', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="Android开发代码规范_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<link rel="stylesheet" href="Android开发代码规范_files/csslrtk.css" />
+
+
+<div class="actGotop"><a title="Top"></a></div>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/zhuyuliang/"><img id="blogLogo" src="Android开发代码规范_files/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/zhuyuliang/">zhuyuliang</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/zhuyuliang/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/zhuyuliang">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/zhuyuliang/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/zhuyuliang/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 5  </span>
+<span id="stats_article_count">文章 - 0  </span>
+<span id="stats-comment_count">评论 - 1</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhuyuliang/p/5218635.html">Android开发代码规范</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><strong><span style="font-size: 18pt; color: #ff00ff;">目录</span></strong></p>
+<ul>
+<li><span style="font-size: 14pt;"><strong>1.命名基本原则 </strong></span></li>
+<li><span style="font-size: 14pt;"><strong>2.命名基本规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>2.1编程基本命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>2.2分类命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.分类命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.1基本数据类型命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.2控件命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.3变量命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.4整个项目的目录规范化</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>3.4 res资源文件命名规范</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>4.代码书写规范 </strong></span></li>
+<li><span style="font-size: 14pt;"><strong>5.注释</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>6.提高代码质量</strong></span></li>
+<li><span style="font-size: 14pt;"><strong>7.设计模式（Design Patterns）</strong></span></li>
+</ul>
+<p> </p>
+<p><span style="font-size: 18pt; color: #ff00ff;"><strong>1.命名基本原则</strong></span><br />    在面向对象编程中，对于类，对象，方法，变量等方面的命名是非常有技巧的。比如，大小写的区分，使用不同字母开头等等。但究其本，追其源，在为一个资源其名称的时候，应该本着描述性以及唯一性这两大特征来命名，才能保证资源之间不冲突，并且每一个都便于记忆。</p>
+<p>对于理解应用程序的逻辑流，命名方案是最有影响力的一种帮助。名称应该说明“什么”而不是“如何”。命名原则是：使名称足够长以便有一定的意义，并且足够短以避免冗长。唯一名称在编程上仅用于将各项区分开。以下几点是规范的命名方法。 <br /> </p>
+<p><span style="font-size: 18pt; color: #ff00ff;"><strong>2.命名基本规范</strong></span></p>
+<p><span style="font-size: 14pt;"><strong>2.1编程基本命名规范</strong> </span><br />（1）避免难懂的名称，如属性名xxK8，这样的名称会导致多义性。   <br />（2） 在面向对象的语言中，在类属性的名称中包含类名是多余的，如Book.BookTitle，而是应该使用Book.Title。   <br />（3）在允许函数重载的语言中，所有重载都应该执行相似的函数。 </p>
+<p>（4）使用动词-名词的方法来命名对给定对象执行特定操作的例程，如CalculateInvoiceTotal()。（例程是某个系统对外提供的功能接口或服务的集合）   </p>
+<p>（5）只要合适，在变量名的末尾或开头加计算限定符（Avg、Sum、Min、Max、Index）。 <br />（6）在变量名中使用互补对，如min/max、begin/end和open/close。  </p>
+<p>（7）布尔变量名应该包含Is，这意味着Yes/No 或 True/False 值，如 fileIsFound。   </p>
+<p>（8）即使对于可能仅出现在几个代码行中的生存期很短的变量，仍然使用有意义的名  称。仅对于短循环索引使用单字母变量名，如 i 或 j。   </p>
+<p>（9）为了帮助区分变量和例程，对例程名称使用Pascal大小写处理 (CalculateInvoiceTotal)，其中每个单词的第        一个字母都是大写的。对于变量名，使用 camel大小写处理 (documentFormatType)，其中除了第一个单词外每个单词的第一个字母都是大写的。   </p>
+<p>（10）不要使用原义数字或原义字符串，而是使用命名常数，NUM_DAYS_IN_WEEK ，以便于维护和理解。  </p>
+<p> </p>
+<p> </p>
+<p><span style="font-size: 14pt;"><strong> 2.2分类命名规范</strong></span></p>
+<p>（1）包的命名 　 </p>
+<p>　　Java包的名字都是由小写单词组成。但是由于Java面向对象编程的特性，每一名Java程序员都可以编写属于自己的Java包，为了保障每个Java包命名的唯一性，在最新的Java编程规范中，要求程序员在自己定义的包的名称之前加上唯一的前缀。由于互联网上的域名称是不会重复的，所以程序员一般采用自己在互联网上的域名称作为自己程序包的唯一前缀。 </p>
+<p>　　例如： com.pccb.app</p>
+<p>（2）类的命名 </p>
+<p>　　 类的名字必须由大写字母开头而单词中的其他字母均为小写；如果类名称由多个单词组成，则每个单词的首字母均应为大写例如TestPage；如果类名称中包含单词缩写，则这个所写词的每个字母均应大写，如：XMLExample,还有一点命名技巧就是由于类是设计用来代表对象的，所以在命名类时应尽量选择名词。 　　</p>
+<p>　　例如： Circle </p>
+<p>（3）方法的命名 </p>
+<p>　　方法的名字的第一个单词应以小写字母作为开头，后面的单词则用大写字母开头。</p>
+<p>　　例如： sendMessge </p>
+<p>（4）常量的命名 </p>
+<p>　　常量的名字应该都使用大写字母，并且指出该常量完整含义。如果一个常量名称由多个单词组成，则应该用下划线来分割这些单词。</p>
+<p>　　例如： MAX_VALUE </p>
+<p>（5）参数的命名 </p>
+<p>参数的命名规范和方法的命名规范相同，而且为了避免阅读程序时造成迷惑，请在尽量保证参数名称为一个单词的情况下使参数的命名尽可能明确。 </p>
+<p class="p">私有属性：private int mAge;</p>
+<p class="p">静态变量：static String sName;</p>
+<p class="p">函数内部变量：int  _Age;</p>
+<p class="p">方法定义时的形参：int pAge;</p>
+<p> </p>
+<p>（6）Javadoc注释 </p>
+<p>　　Java除了可以采用我们常见的注释方式之外，Java语言规范还定义了一种特殊的注释，也就是我们所说的Javadoc注释，它是用来记录我们代码中的API的。Javadoc注释是一种多行注释，以/**开头，而以*/结束，注释可以包含一些HTML标记符和专门的关键词。使用Javadoc注释的好处是编写的注释可以被自动转为在线文档，省去了单独编写程序文档的麻烦。</p>
+<p>　　例如： </p>
+<p>/**</p>
+<p>* This is an example of</p>
+<p>* Javadoc</p>
+<p>*</p>
+<p>* @author darchon</p>
+<p>* @version 0.1, 10/11/2002</p>
+<p>*/ </p>
+<p>　　在每个程序的最开始部分，一般都用Javadoc注释对程序的总体描述以及版权信息，之后在主程序中可以为每个类、接口、方法、字段添加Javadoc注释，每个注释的开头部分先用一句话概括该类、接口、方法、字段所完成的功能，这句话应单独占据一行以突出其概括作用，在这句话后面可以跟随更加详细的描述段落。在描述性段落之后还可以跟随一些以Javadoc注释标签开头的特殊段落，例如上面例子中的@auther和@version，这些段落将在生成文档中以特定方式显示。</p>
+<p>虽然为一个设计低劣的程序添加注释不会使其变成好的程序，但是如果按照编程规范编写程序并且为程序添加良好的注释却可以帮助你编写出设计完美，运行效率高且易于理解的程序，尤其是在多人合作完成同一项目时编程规范就变得更加重要。俗话说“磨刀不误砍柴工”，花费一点时间去适应一下Java编程规范是有好处的。 </p>
+<p> </p>
+<p><span style="font-size: 18pt; color: #ff00ff;"><strong>3.分类命名规范</strong></span></p>
+<p><span style="font-size: 14pt;">3.1基本数据类型命名规范</span></p>
+<p>Integer：int+描述          Char：chr+描述          Boolean：bln+描述 </p>
+<p>Long：lng+描述           Short：shr +描述         Double：dbl+描述</p>
+<p>String：str+描述           Float：flt+描述          Single：sng+描述</p>
+<p>DataTime：dt+描述         Array：arr+描述        Object：obj+描述     </p>
+<p>如：String  srtName;</p>
+<p> </p>
+<p><span style="font-size: 14pt;"><strong>3.2控件命名规范 </strong></span></p>
+<table>
+<tbody>
+<tr>
+<td valign="top" width="284">
+<p>TextView ：txt_+描述 </p>
+
+</td>
+<td valign="top" width="284">
+<p>Button ：btn_+描述  </p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ImageButton ：imgBtn_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>ImageView ：imgView_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>CheckBox ：chk_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>RadioButton ：rdoBtn_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>AnalogClock ：anaClk_+描述 </p>
+
+</td>
+<td valign="top" width="284">
+<p>DigitalClock ：DgtClk_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>DatePicker ：dtPk_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>TimePicker ：tmPk _+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ToggleButton ：tglBtn_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>EditText：edtTxt_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ProgressBar：lcb_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>SeekBar：skBar _+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>AutoCompleteTextView：autoTxt_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>MultiAutoCompleteTextView：mlAutoTxt_+描述 </p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ZoomControls：zmCtrl_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>Include：ind_+描述 </p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>VideoView：vdoVi_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>WebView：webVi_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>RatingBar：ratBar_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>Tab：tab__+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>Spinner：spn_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>Chronometer：Cmt_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ScrollView：sclVi_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>TextSwitcher：txtSwt_+描述  </p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>Gallery：gal_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>ImageSwitcher：imgSwt_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>GridView：gV_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>ListView：lVi_+描述</p>
+
+</td>
+
+</tr>
+<tr>
+<td valign="top" width="284">
+<p>ExpandableList: epdLt_+描述</p>
+
+</td>
+<td valign="top" width="284">
+<p>MapView: mapVi_+描述</p>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+<p> </p>
+<p>控件说明如下：</p>
+<p>•	TextView - 文本显示控件</p>
+<p>•	Button - 按钮控件</p>
+<p>•	ImageButton - 图片按钮控件</p>
+<p>•	ImageView - 图片显示控件</p>
+<p>•	CheckBox - 复选框控件</p>
+<p>•	RadioButton - 单选框控件</p>
+<p>•	AnalogClock - 钟表（带表盘的那种）控件</p>
+<p>•	DigitalClock - 电子表控件</p>
+<p>•	DatePicker - 日期选择控件</p>
+<p>•	TimePicker - 时间选择控件</p>
+<p>•	ToggleButton - 双状态按钮控件</p>
+<p>•	EditText - 可编辑文本控件</p>
+<p>•	ProgressBar - 进度条控件</p>
+<p>•	SeekBar - 可拖动的进度条控件</p>
+<p>•	AutoCompleteTextView - 支持自动完成功能的可编辑文本控件</p>
+<p>•	MultiAutoCompleteTextView - 支持自动完成功能的可编辑文本控件，允许输入多值（多值之间会自动地用指定的分隔符    分开）</p>
+<p>•	ZoomControls - 放大/缩小按钮控件</p>
+<p>•	Include - 整合控件</p>
+<p>•	VideoView - 视频播放控件</p>
+<p>•	WebView - 浏览器控件</p>
+<p>•	RatingBar - 评分控件</p>
+<p>•	Tab - 选项卡控件</p>
+<p>•	Spinner - 下拉框控件</p>
+<p>•	Chronometer - 计时器控件</p>
+<p>•	ScrollView - 滚动条控件</p>
+<p>•	TextSwitcher - 文字转换器控件（改变文字时增加一些动画效果）</p>
+<p>•	Gallery –画廊控件</p>
+<p>•	ImageSwitcher - 图片转换器控件（改变图片时增加一些动画效果）</p>
+<p>•	GridView - 网格控件</p>
+<p>•	ListView - 列表控件</p>
+<p>•	ExpandableList - 支持展开/收缩功能的列表控件        </p>
+<p> </p>
+<p><span style="font-size: 14pt;"><strong>3.3变量命名规范</strong></span></p>
+<p>变量命名：前缀+类型描述+意义描述</p>
+<p>前缀：</p>
+<p>成员变量：m_***             局部变量：l_***          形参：a_***</p>
+<p>常量：大写_***                  枚举值：em_***</p>
+<p> </p>
+<p class="p"><span style="font-size: 14pt;"><strong>3.4整个项目的目录规范化</strong></span></p>
+<p>1、系统目录规范：</p>
+<p>　　指项目目录中不仅包括源代码，还需要包括：需求相关文档、设计文档、计划日志文档、测试文档、项目进行中学习资料文档（参考Demo）；使整个项目更加清晰，</p>
+<p>2、源代码目录规范：</p>
+<p>一般系统命名空间目录尽量不要超过3层，[组织名].[项目名].[模块名]：com.pccb.app</p>
+<p> </p>
+<p><span style="font-size: 14pt;"><strong>3.5 res资源文件命名</strong></span></p>
+<p> 1,res/layout下的xml文件统一用小写和下划线"_"组合命名，并加上前缀以便区分 </p>
+<p>正例：</p>
+<p>对话框的xml配置文件:dlg_name.xml</p>
+<p> 2.layout中的id采用以下命名模式： view缩写_模块名称_view的逻辑名称</p>
+<p>     说明：view的缩写详情如下 </p>
+<p>ListView： lv </p>
+<p>RelativeView: rv </p>
+<p>TextView: tv </p>
+<p>ImageView: iv</p>
+<p> ImageButton: ib  / ibtn</p>
+<p>Button:  btn </p>
+<p>正例： </p>
+<p>@＋id/lv_appstore_applist </p>
+<p>反例： </p>
+<p>@+id/ListView01</p>
+<p> 3.activity文中的view变量采用以下命名模式： 逻辑名称_view缩写</p>
+<p>   正例： </p>
+<p>ListViewapplistLv </p>
+<p> 4.res/drawable下的资源文件采用以下命名模式：  activity名称_逻辑名称/common_逻辑名称</p>
+<p>   正例： </p>
+<p>main_default.png,main_pressed.png</p>
+<p> 5.strings.xml中的id采用以下命名模式： activity名称_功能模块名称_逻辑名称/activity名称_逻辑名称/common_逻辑名称</p>
+<p>   正例： </p>
+<p>&lt;string name="main_downloading"&gt;正在下载„&lt;/string&gt;</p>
+<p> 6.字符串信息应统一在strings.xml中定义，调试信息除外</p>
+<p> 7.使用日志时，不重要的信息定义在debug等级或者info等级，较为严重的情况把日志定义的warn等级和error等级。正常情况下尽量不使用System.out.println();作为日志的输出</p>
+<p><br /><span style="font-size: 18pt; color: #ff00ff;"><strong>4.代码书写规范 </strong></span><br />（1）建立标准的缩进大小（如四个空格），并一致地使用此标准。用规定的缩进对齐代码节。    <br />（2）在括号对对齐的位置垂直对齐左括号和右括号，如：   <br />   for   (i=0; i&lt;100; i++) <br />   { <br />         ; <br />   }    <br />（3）沿逻辑结构行缩进代码使代码更易于阅读和理解，如：   <br />   if(expression) <br />         { <br />         if(expression ) <br />          { <br />            // <br />            //此处填写你的代码块; <br />            // <br />          } <br />         else <br />          { <br />            // <br />            //此处填写你的代码块; <br />            // <br />          } <br />         } <br />（4）为注释和代码建立最大的行长度，以避免不得不滚动源代码编辑器，并且可以提供整齐的硬拷贝表示形式。     <br />（5）当一行内容太长而必须换行时，在后面换行代码中要使用缩进格式，如下： <br />    string   inserString ="Insert   Into   TableName(username,password,email,sex,address) " <br />    +"Values( 'Soholife ', 'chenyp ', 'soholife@sina.com ', 'male ', '深圳福田 ') "; <br />（6）每一行上放置的语句避免超过一条。特殊循环如for(i =0;i&lt;100;i++)等除外。   <br />（7）编写SQL语句时，对于关键字使用全部大写，对于数据库元素（如表、列和视图）使用大小写混合。例如SELECT * FROM Table1；  <br />（8）将每个主要的SQL子句放在不同的行上，这样更容易阅读和编辑语句，例如：   </p>
+<p>   SELECT   FirstName,   LastName <br />   FROM     Customers <br />   WHERE   State   =   'WA '  </p>
+<p>（10）使用空白为源代码提供结构线索。这样做会创建代码“段”，有助于读者理解软件的逻辑分段<br />（11）将大的复杂代码段分为较小的、易于理解的模块。   <br /><br /><span style="font-size: 18pt; color: #ff00ff;"><strong>5.注释 </strong></span><br />     软件文档以两种形式存在：外部的和内部的。外部文档（如规范、帮助文件和设计文档）在源代码的外部维护。内部文档由开发人员在开发时在源代码中编写的注释组成。 <br />     不考虑外部文档的可用性，由于硬拷贝文档可能会放错地方，源代码清单应该能够独立存在。外部文档应该由规范、设计文档、更改请求、错误历史记录和使用的编码标准组成。   以下几点是规范的注释方法：   </p>
+<p>（1）一个工程应有一个统一的头文件注释，以说明整个工程的信息、创建日期、版本等等     </p>
+<p>（2）对重要的程序加注释进行说明</p>
+<p>（3）修改代码或删除时，将原代码用注释的方法屏蔽，同时要加开发者自身对修改操作的注释。格式为：</p>
+<p>//原代码</p>
+<p>//Added/（Modified/ Deleted） by 开发者姓名 年-月-日;</p>
+<p>//因为业务原因修改的，要注明修改或删除原因）</p>
+<p>新代码<br />（4）使用XML文档格式，如下面方法的注释： <br />  &lt;!-- 注释内容 --&gt;</p>
+<p>（5）避免杂乱的注释，而是应该使用空白将注释同代码分开。   <br />（6）移除所有临时或无关的注释，以避免在日后的维护工作中产生混乱。   <br />（7）注释应对代码进行准确的说明，不应存在歧义。   <br />（8）在整个应用程序中，使用具有一致的标点和结构的统一样式来构造注释。   </p>
+<p>（9）方法注释的内容（1，5，6，7项正常情况下都要写上去）  </p>
+<p>1.类该方法是做什么的。 2.该方法如何工作。 3.代码修改历史纪录。 4.方法调用代码示范。 </p>
+<p>5.必须传入什么样的参数给这个方法。@param 6.异常处理。@throws </p>
+<p>7.这个方法返回什么。@return</p>
+<p> </p>
+<h3><span style="font-size: 18pt; color: #ff00ff;">6.提高代码质量</span></h3>
+<p class="NewStyle17">（1）删除无用的变量</p>
+<p class="NewStyle17">（2）删除无用的引入 </p>
+<p class="NewStyle17">（3）对于可以复用的部分，一定提取成共用的方法，减少代码量</p>
+<p class="NewStyle17">（4）变量/方法命名一定要符合清晰易懂，不用太在乎长度</p>
+<p class="NewStyle17">（5）代码完成后，进行code review，减少出错几率 </p>
+<p class="NewStyle17"> (6)  用适合的方式尽量去思考设计模式方式来进行开发</p>
+<p> </p>
+<p> </p>
+<h3><span style="font-size: 18pt; color: #ff00ff;">7.设计模式（Design Patterns）——可复用面向对象软件的基础</span></h3>
+<p class="p">   设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。</p>
+<p>   一个程序员对设计模式的理解:<br />      “不懂”为什么要把很简单的东西搞得那么复杂。后来随着软件开发经验的增加才开始明白我所看到的“复杂”恰恰就是设计模式的精髓所在，我所理解的“简单”就是一把钥匙开一把锁的模式，目的仅仅是着眼于解决现在的问题，而设计模式的“复杂”就在于它是要构造一个“万能钥匙”，目的是提出一种对所有锁的开锁方案。在真正理解设计模式之前我一直在编写“简单”的代码.<br />    这个“简单”不是功能的简单，而是设计的简单。简单的设计意味着缺少灵活性，代码很钢硬，只在这个项目里有用，拿到其它的项目中就是垃圾，我将其称之为“一次性代码”。</p>
+<p>    --&gt;要使代码可被反复使用,请用'设计模式'对你的代码进行设计.</p>
+<p>很多我所认识的程序员在接触到设计模式之后，都有一种相见恨晚的感觉，有人形容学习了设计模式之后感觉自己好像已经脱胎换骨，达到了新的境界，还有人甚至把是否了解设计模式作为程序员划分水平的标准。</p>
+<p>我们也不能陷入模式的陷阱，为了使用模式而去套模式，那样会陷入形式主义。我们在使用模式的时候，一定要注意模式的意图（intent），而不 要过多的去关注模式的实现细节，因为这些实现细节在特定情况下，可能会发生一些改变。不要顽固地认为设计模式一书中的类图或实现代码就代表了模式本身。</p>
+<p><br /><span style="font-size: 18pt; color: #00ff00;"><strong>设计原则：(重要)</strong></span><br />    1.逻辑代码独立到单独的方法中，注重封装性--易读，易复用。<br />不要在一个方法中，写下上百行的逻辑代码。把各小逻辑代码独立出来，写于其它方法中，易读其可重复调用。<br />    2.写类，写方法，写功能时，应考虑其移植性，复用性：防止一次性代码！<br />是否可以拿到其它同类事物中应该？是否可以拿到其它系统中应该？<br />    3.熟练运用继承的思想：<br />找出应用中相同之处，且不容易发生变化的东西，把它们抽取到抽象类中，让子类去继承它们；<br />继承的思想，也方便将自己的逻辑建立于别人的成果之上。如ImageField extends JTextField；<br />熟练运用接口的思想：<br />找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</p>
+<p> </p>
+<p>设计模式：</p>
+<p>    1.java的23中设计模式 </p>
+<p>    2.MVC模式 </p>
+<p>    3.MVP 模式</p>
+<p> </p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/zhuyuliang/tag/Android/">Android</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5218635,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="Android开发代码规范_files/icon_weibo_24.png" alt="" /></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="Android开发代码规范_files/wechat.png" alt="" /></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhuyuliang/" target="_blank"><img src="Android开发代码规范_files/20150505091020.png" class="author_avatar" alt="" /></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zhuyuliang/">zhuyuliang</a><br />
+            <a href="http://home.cnblogs.com/u/zhuyuliang/followees">关注 - 12</a><br />
+            <a href="http://home.cnblogs.com/u/zhuyuliang/followers">粉丝 - 2</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5218635,'Digg')">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(5218635,'Bury')">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html" title="发布于2016-02-24 14:21">android studio快捷键</a><br /><a href="http://www.cnblogs.com/zhuyuliang/p/6762184.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zhuyuliang/p/6762184.html" title="发布于2017-04-25 15:03">Python爬虫爬取博客园并保存</a><br /></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-02-25 22:34</span> <a href="http://www.cnblogs.com/zhuyuliang/">zhuyuliang</a> 阅读(<span id="post_view_count">604</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5218635" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5218635);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=182116,cb_entryId=5218635,cb_blogApp=currentBlogApp,cb_blogUserGuid='049fbf73-4db7-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2016/2/25 22:34:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br /><a href="http://cloud.qy.com.cn/68?a=cnblog" target="_blank">【推荐】群英云服务器性价王，2核4G5M BGP带宽 68元首月！</a><br /><a href="https://group.cnblogs.com/topic/76725.html" target="_blank">【福利】阿里云免费套餐升级，更多产品，更久时长</a><br /></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.grapecity.com.cn/enterprise-solutions/huozige/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=huozige&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="Android开发代码规范_files/24442-20170418140643727-710809625.png" alt="Huozige" /></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br /> ·  <a href="http://news.cnblogs.com/n/568053/" target="_blank">广告主看过来！Google宣布开放购买传统电视广告</a><br /> ·  <a href="http://news.cnblogs.com/n/568057/" target="_blank">《纪念碑谷》开发者：用苹果的标准做游戏</a><br /> ·  <a href="http://news.cnblogs.com/n/568069/" target="_blank">难言再见！ZUK被曝遭联想抛弃：官方暗示让人哽咽</a><br /> ·  <a href="http://news.cnblogs.com/n/568072/" target="_blank">王垠：自动编程是不可能的 我为什么不在乎人工智能</a><br /> ·  <a href="http://news.cnblogs.com/n/568071/" target="_blank">微信做搜索：未来是「微信网」还是「万维网」？</a><br />» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/15483/" target="_blank"><img width="468" height="60" src="Android开发代码规范_files/24442-20170331150421570-489464769.jpg" alt="阿里云C2" /></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br /><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br /> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br /> ·  <a href="http://kb.cnblogs.com/page/566318/" target="_blank">我为什么鼓励工程师写blog</a><br /> ·  <a href="http://kb.cnblogs.com/page/566528/" target="_blank">怎么轻松学习JavaScript</a><br /> ·  <a href="http://kb.cnblogs.com/page/509431/" target="_blank">如何打好前端游击战</a><br /></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/zhuyuliang/">zhuyuliang</a><br />园龄：<a href="http://home.cnblogs.com/u/zhuyuliang/" title="入园时间：2014-03-29">3年</a><br />粉丝：<a href="http://home.cnblogs.com/u/zhuyuliang/followers/">2</a><br />关注：<a href="http://home.cnblogs.com/u/zhuyuliang/followees/">12</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2017/03/01');return false;">&lt;</a></td><td align="center">2017年4月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2017/05/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center"><a href="http://www.cnblogs.com/zhuyuliang/archive/2017/04/25.html"><u>25</u></a></td><td class="CalTodayDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" /> <input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk" /></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" /> <input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk" /></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhuyuliang/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zhuyuliang/tag/AndroidStudio/">AndroidStudio</a>(2)</li><li><a href="http://www.cnblogs.com/zhuyuliang/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(1)</li><li><a href="http://www.cnblogs.com/zhuyuliang/tag/Android/">Android</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zhuyuliang/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zhuyuliang/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zhuyuliang/archive/2015/11.html">2015年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links577357" class="catList sidebar-block">
+<h3 class="catListTitle">Android</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://blog.csdn.net/guolin_blog/article/details/39207945" rel="nofollow"> Android数据库-使用LitePal建立表关联 </a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.pedant.cn/2014/09/23/webview-touch-conflict" rel="nofollow">Android WebView开发问题及优化汇总</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://blog.csdn.net/y150481863/article/details/17954191" rel="nofollow">Android对ScrollView滚动监听，实现美团、大众点评的购买悬浮效果 </a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_开发所需要的工具使用和介绍" class="catList开发所需要的工具使用和介绍 sidebar-block">
+<h3 class="catListTitle">工具操作</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://blog.csdn.net/zshq280017423/article/details/8928616" rel="nofollow">Android手机 Fildder真机抓包</a> </li>
+<li class="c_b_p_link_desc">真机抓包 经测试好用</li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html#3366704">1. Re:android studio快捷键</a></li>
+        <li class="recent_comment_body">赞</li>
+        <li class="recent_comment_author">--智能飞鱼</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhuyuliang/p/5007016.html">1. AndroidStudio支持新的NDK的操作使用(3888)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/5218635.html">2. Android开发代码规范(604)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html">3. android studio快捷键(185)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/5212746.html">4. Java设计模式-Builder生成器模式(126)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/6762184.html">5. Python爬虫爬取博客园并保存(50)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html">1. android studio快捷键(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html">1. android studio快捷键(2)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/5218635.html">2. Android开发代码规范(1)</a></li><li><a href="http://www.cnblogs.com/zhuyuliang/p/5007016.html">3. AndroidStudio支持新的NDK的操作使用(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 zhuyuliang
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

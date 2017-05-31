@@ -1,0 +1,295 @@
+<div class="post">
+<h1 class="postTitle">
+<a class="postTitle2" href="http://www.cnblogs.com/zhuyuliang/p/6762184.html" id="cb_post_title_url">Python爬虫爬取博客园并保存</a>
+</h1>
+<div class="clear"></div>
+<div class="postBody">
+<div id="cnblogs_post_body"><h2><strong>Python爬虫爬取博客园并保存       </strong></h2>
+<p><strong>爬取博客园指定用户的文章修饰后全部保存到本地</strong></p>
+<p><strong>首先定义爬取的模块文件：</strong></p>
+<ol>
+<li>crawlers_main.py 执行入口</li>
+<li>url_manager.py url管理器</li>
+<li>download_manager.py 下载模块</li>
+<li>parser_manager.py html解析器（解析html需要利用的内容)</li>
+<li>output_manager.py 输出html网页全部内容文件（包括css,png,js等）</li>
+</ol>
+<p><img alt="" src="http://images2015.cnblogs.com/blog/618582/201704/618582-20170425145703365-404381905.png"/></p>
+<p> </p>
+<p><strong>crawlers_main.py 执行入口</strong></p>
+<div class="cnblogs_code"><img alt="" class="code_img_closed" id="code_img_closed_121f10f2-dbdc-45bc-9b79-b38c82c13001" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif"/><img alt="" class="code_img_opened" id="code_img_opened_121f10f2-dbdc-45bc-9b79-b38c82c13001" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" style="display: none"/>
+<div class="cnblogs_code_hide" id="cnblogs_code_open_121f10f2-dbdc-45bc-9b79-b38c82c13001">
+<pre><span style="color: #008080"> 1</span> <span style="color: #008000">#</span><span style="color: #008000"> coding:utf8</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">from</span> com.crawlers <span style="color: #0000ff">import</span><span style="color: #000000"> download_manager
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">from</span> com.crawlers <span style="color: #0000ff">import</span><span style="color: #000000"> output_manager
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">from</span> com.crawlers <span style="color: #0000ff">import</span><span style="color: #000000"> parser_manager
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">from</span> com.crawlers <span style="color: #0000ff">import</span><span style="color: #000000"> url_manager
+</span><span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">class</span><span style="color: #000000"> SpiderMain(object):
+</span><span style="color: #008080"> 9</span>     <span style="color: #0000ff">def</span> <span style="color: #800080">__init__</span><span style="color: #000000">(self):
+</span><span style="color: #008080">10</span>         self.urls =<span style="color: #000000"> url_manager.UrlManager()
+</span><span style="color: #008080">11</span>         self.downloader =<span style="color: #000000"> download_manager.DownloadManager()
+</span><span style="color: #008080">12</span>         self.parser =<span style="color: #000000"> parser_manager.ParserManager()
+</span><span style="color: #008080">13</span>         self.output =<span style="color: #000000"> output_manager.OutputManager()
+</span><span style="color: #008080">14</span> 
+<span style="color: #008080">15</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> craw(self, root_url):
+</span><span style="color: #008080">16</span>         html_root =<span style="color: #000000"> self.downloader.download(root_url)
+</span><span style="color: #008080">17</span>         new_urls =<span style="color: #000000"> self.parser.parseUrls(root_url,html_root)
+</span><span style="color: #008080">18</span> <span style="color: #000000">        self.urls.add_new_urls(new_urls)
+</span><span style="color: #008080">19</span>         count = 1
+<span style="color: #008080">20</span>         <span style="color: #0000ff">while</span><span style="color: #000000"> self.urls.has_new_url():
+</span><span style="color: #008080">21</span>             <span style="color: #0000ff">try</span><span style="color: #000000">:
+</span><span style="color: #008080">22</span>                 new_url =<span style="color: #000000"> self.urls.get_new_url()
+</span><span style="color: #008080">23</span>                 <span style="color: #0000ff">print</span>(<span style="color: #800000">'</span><span style="color: #800000">craw %d : %s</span><span style="color: #800000">'</span> %<span style="color: #000000"> (count, new_url))
+</span><span style="color: #008080">24</span>                 html_cont =<span style="color: #000000"> self.downloader.download(new_url)
+</span><span style="color: #008080">25</span>                 new_data =<span style="color: #000000"> self.parser.parse(new_url, html_cont)
+</span><span style="color: #008080">26</span> <span style="color: #000000">                self.output.collect_data(new_data)
+</span><span style="color: #008080">27</span>                 <span style="color: #0000ff">if</span> count == 1000<span style="color: #000000">:
+</span><span style="color: #008080">28</span>                     <span style="color: #0000ff">break</span>
+<span style="color: #008080">29</span>                 count += 1
+<span style="color: #008080">30</span>             <span style="color: #0000ff">except</span><span style="color: #000000">:
+</span><span style="color: #008080">31</span>                 <span style="color: #0000ff">print</span>(<span style="color: #800000">'</span><span style="color: #800000">craw failed</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">32</span> 
+<span style="color: #008080">33</span> <span style="color: #000000">        self.output.output_html()
+</span><span style="color: #008080">34</span> 
+<span style="color: #008080">35</span> 
+<span style="color: #008080">36</span> <span style="color: #0000ff">if</span> <span style="color: #800080">__name__</span> == <span style="color: #800000">"</span><span style="color: #800000">__main__</span><span style="color: #800000">"</span><span style="color: #000000">:
+</span><span style="color: #008080">37</span>     root_url = <span style="color: #800000">"</span><span style="color: #800000">http://www.cnblogs.com/zhuyuliang/</span><span style="color: #800000">"</span>
+<span style="color: #008080">38</span>     obj_spider =<span style="color: #000000"> SpiderMain()
+</span><span style="color: #008080">39</span>     obj_spider.craw(root_url)</pre>
+</div>
+<span class="cnblogs_code_collapse">crawlers_main.py</span></div>
+<p><strong>url_manager.py url管理器</strong></p>
+<div class="cnblogs_code"><img alt="" class="code_img_closed" id="code_img_closed_665de81b-15b8-4000-be85-1e0397624803" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif"/><img alt="" class="code_img_opened" id="code_img_opened_665de81b-15b8-4000-be85-1e0397624803" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" style="display: none"/>
+<div class="cnblogs_code_hide" id="cnblogs_code_open_665de81b-15b8-4000-be85-1e0397624803">
+<pre><span style="color: #008080"> 1</span> <span style="color: #008000">#</span><span style="color: #008000"> coding:utf8</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">class</span><span style="color: #000000"> UrlManager(object):
+</span><span style="color: #008080"> 3</span> 
+<span style="color: #008080"> 4</span>     <span style="color: #0000ff">def</span> <span style="color: #800080">__init__</span><span style="color: #000000">(self):
+</span><span style="color: #008080"> 5</span>         self.new_urls =<span style="color: #000000"> set()
+</span><span style="color: #008080"> 6</span>         self.old_urls =<span style="color: #000000"> set()
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> add_new_url(self, url):
+</span><span style="color: #008080"> 9</span>         <span style="color: #0000ff">if</span> url <span style="color: #0000ff">is</span><span style="color: #000000"> None:
+</span><span style="color: #008080">10</span>             <span style="color: #0000ff">return</span>
+<span style="color: #008080">11</span>         <span style="color: #0000ff">if</span> url <span style="color: #0000ff">not</span> <span style="color: #0000ff">in</span> self.new_urls <span style="color: #0000ff">and</span> url <span style="color: #0000ff">not</span> <span style="color: #0000ff">in</span><span style="color: #000000"> self.old_urls:
+</span><span style="color: #008080">12</span> <span style="color: #000000">            self.new_urls.add(url)
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> add_new_urls(self, urls):
+</span><span style="color: #008080">15</span>         <span style="color: #0000ff">if</span> urls <span style="color: #0000ff">is</span> None <span style="color: #0000ff">or</span> len(urls) ==<span style="color: #000000"> 0:
+</span><span style="color: #008080">16</span>             <span style="color: #0000ff">return</span>
+<span style="color: #008080">17</span>         <span style="color: #0000ff">for</span> url <span style="color: #0000ff">in</span><span style="color: #000000"> urls:
+</span><span style="color: #008080">18</span> <span style="color: #000000">            self.add_new_url(url)
+</span><span style="color: #008080">19</span> 
+<span style="color: #008080">20</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> has_new_url(self):
+</span><span style="color: #008080">21</span>         <span style="color: #0000ff">return</span> len(self.new_urls) !=<span style="color: #000000"> 0
+</span><span style="color: #008080">22</span> 
+<span style="color: #008080">23</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> get_new_url(self):
+</span><span style="color: #008080">24</span>         new_url =<span style="color: #000000"> self.new_urls.pop()
+</span><span style="color: #008080">25</span> <span style="color: #000000">        self.old_urls.add(new_url)
+</span><span style="color: #008080">26</span>         <span style="color: #0000ff">return</span> new_url</pre>
+</div>
+<span class="cnblogs_code_collapse">url_manager.py</span></div>
+<p><strong>download_manager.py 下载模块</strong></p>
+<div class="cnblogs_code"><img alt="" class="code_img_closed" id="code_img_closed_4217adde-aac1-4b71-9c53-ea86db6de177" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif"/><img alt="" class="code_img_opened" id="code_img_opened_4217adde-aac1-4b71-9c53-ea86db6de177" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" style="display: none"/>
+<div class="cnblogs_code_hide" id="cnblogs_code_open_4217adde-aac1-4b71-9c53-ea86db6de177">
+<pre><span style="color: #008080"> 1</span> <span style="color: #008000">#</span><span style="color: #008000"> coding:utf8</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">import</span><span style="color: #000000"> urllib2
+</span><span style="color: #008080"> 3</span> 
+<span style="color: #008080"> 4</span> 
+<span style="color: #008080"> 5</span> <span style="color: #0000ff">class</span><span style="color: #000000"> DownloadManager(object):
+</span><span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> download(self, url):
+</span><span style="color: #008080"> 8</span>         <span style="color: #0000ff">if</span> url <span style="color: #0000ff">is</span><span style="color: #000000"> None:
+</span><span style="color: #008080"> 9</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> None
+</span><span style="color: #008080">10</span>         response =<span style="color: #000000"> urllib2.urlopen(url)
+</span><span style="color: #008080">11</span>         <span style="color: #0000ff">if</span> response.code != 200<span style="color: #000000">:
+</span><span style="color: #008080">12</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> None
+</span><span style="color: #008080">13</span>         <span style="color: #0000ff">return</span> response.read()</pre>
+</div>
+<span class="cnblogs_code_collapse">download_main.py</span></div>
+<p><strong>parser_manager.py html解析器（解析html需要利用的内容)</strong></p>
+<div class="cnblogs_code"><img alt="" class="code_img_closed" id="code_img_closed_7346c30d-4bab-4e1d-92a0-1a16c4fb33dd" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif"/><img alt="" class="code_img_opened" id="code_img_opened_7346c30d-4bab-4e1d-92a0-1a16c4fb33dd" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" style="display: none"/>
+<div class="cnblogs_code_hide" id="cnblogs_code_open_7346c30d-4bab-4e1d-92a0-1a16c4fb33dd">
+<pre><span style="color: #008080"> 1</span> <span style="color: #008000">#</span><span style="color: #008000"> coding:utf8</span>
+<span style="color: #008080"> 2</span> <span style="color: #0000ff">import</span><span style="color: #000000"> re
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">from</span> HTMLParser <span style="color: #0000ff">import</span><span style="color: #000000"> HTMLParser
+</span><span style="color: #008080"> 4</span> 
+<span style="color: #008080"> 5</span> <span style="color: #0000ff">from</span> bs4 <span style="color: #0000ff">import</span><span style="color: #000000"> BeautifulSoup
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">import</span><span style="color: #000000"> urlparse
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">import</span><span style="color: #000000"> sys
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">reload(sys)
+</span><span style="color: #008080">10</span> sys.setdefaultencoding(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">11</span> 
+<span style="color: #008080">12</span> <span style="color: #0000ff">class</span><span style="color: #000000"> ParserManager(HTMLParser):
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span>     <span style="color: #0000ff">def</span> <span style="color: #800080">__init__</span><span style="color: #000000">(self):
+</span><span style="color: #008080">15</span>         HTMLParser.<span style="color: #800080">__init__</span><span style="color: #000000">(self)
+</span><span style="color: #008080">16</span>         self.links =<span style="color: #000000"> []
+</span><span style="color: #008080">17</span> 
+<span style="color: #008080">18</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> handle_starttag(self, tag, attrs):
+</span><span style="color: #008080">19</span>         <span style="color: #008000">#</span><span style="color: #008000"> print "Encountered the beginning of a %s tag" % tag</span>
+<span style="color: #008080">20</span>         <span style="color: #0000ff">if</span> tag == <span style="color: #800000">'</span><span style="color: #800000">img</span><span style="color: #800000">'</span> <span style="color: #0000ff">or</span> tag == <span style="color: #800000">"</span><span style="color: #800000">script</span><span style="color: #800000">"</span><span style="color: #000000">:
+</span><span style="color: #008080">21</span>             <span style="color: #0000ff">for</span> (variable, value) <span style="color: #0000ff">in</span><span style="color: #000000"> attrs:
+</span><span style="color: #008080">22</span>                 <span style="color: #0000ff">if</span> variable == <span style="color: #800000">"</span><span style="color: #800000">src</span><span style="color: #800000">"</span> <span style="color: #0000ff">or</span> variable == <span style="color: #800000">"</span><span style="color: #800000">href</span><span style="color: #800000">"</span><span style="color: #000000">:
+</span><span style="color: #008080">23</span> <span style="color: #000000">                    self.links.append(value)
+</span><span style="color: #008080">24</span>         <span style="color: #0000ff">if</span> tag == <span style="color: #800000">"</span><span style="color: #800000">link</span><span style="color: #800000">"</span><span style="color: #000000">:
+</span><span style="color: #008080">25</span>             dic =<span style="color: #000000"> dict(attrs)
+</span><span style="color: #008080">26</span>             <span style="color: #0000ff">if</span> dic[<span style="color: #800000">'</span><span style="color: #800000">rel</span><span style="color: #800000">'</span>] == <span style="color: #800000">"</span><span style="color: #800000">stylesheet</span><span style="color: #800000">"</span><span style="color: #000000">:
+</span><span style="color: #008080">27</span>                 self.links.append(dic[<span style="color: #800000">'</span><span style="color: #800000">href</span><span style="color: #800000">'</span><span style="color: #000000">])
+</span><span style="color: #008080">28</span> 
+<span style="color: #008080">29</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> parse(self, page_url, html_cont):
+</span><span style="color: #008080">30</span>             <span style="color: #0000ff">if</span> page_url <span style="color: #0000ff">is</span> None <span style="color: #0000ff">or</span> html_cont <span style="color: #0000ff">is</span><span style="color: #000000"> None:
+</span><span style="color: #008080">31</span>                 <span style="color: #0000ff">return</span>
+<span style="color: #008080">32</span>             soup = BeautifulSoup(html_cont,<span style="color: #800000">'</span><span style="color: #800000">html.parser</span><span style="color: #800000">'</span>,from_encoding=<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">33</span>             new_data =<span style="color: #000000"> self._get_new_data(page_url,soup)
+</span><span style="color: #008080">34</span>             <span style="color: #0000ff">return</span><span style="color: #000000"> new_data
+</span><span style="color: #008080">35</span> 
+<span style="color: #008080">36</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> _get_new_urls(self, page_url, soup):
+</span><span style="color: #008080">37</span>         new_urls =<span style="color: #000000"> set()
+</span><span style="color: #008080">38</span>         <span style="color: #008000">#</span><span style="color: #008000">href="http://www.cnblogs.com/zhuyuliang/p/5218635.html"</span>
+<span style="color: #008080">39</span>         links = soup.find_all(<span style="color: #800000">'</span><span style="color: #800000">a</span><span style="color: #800000">'</span>,href=re.compile(r<span style="color: #800000">'</span><span style="color: #800000">http://www.cnblogs.com/zhuyuliang/p/...</span><span style="color: #800000">'</span><span style="color: #000000">))
+</span><span style="color: #008080">40</span>         <span style="color: #0000ff">for</span> link <span style="color: #0000ff">in</span><span style="color: #000000"> links:
+</span><span style="color: #008080">41</span>             new_url = link[<span style="color: #800000">'</span><span style="color: #800000">href</span><span style="color: #800000">'</span><span style="color: #000000">]
+</span><span style="color: #008080">42</span>             new_full_url =<span style="color: #000000"> urlparse.urljoin(page_url,new_url)
+</span><span style="color: #008080">43</span> <span style="color: #000000">            new_urls.add(new_full_url)
+</span><span style="color: #008080">44</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> new_urls
+</span><span style="color: #008080">45</span> 
+<span style="color: #008080">46</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> _get_new_data(self, page_url, soup):
+</span><span style="color: #008080">47</span>         res_data =<span style="color: #000000"> {}
+</span><span style="color: #008080">48</span>         res_data[<span style="color: #800000">'</span><span style="color: #800000">url</span><span style="color: #800000">'</span>] =<span style="color: #000000"> page_url
+</span><span style="color: #008080">49</span> 
+<span style="color: #008080">50</span>         <span style="color: #008000">#</span><span style="color: #008000">&lt;a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/zhuyuliang/p/5218635.html"&gt;Android开发代码规范&lt;/a&gt;</span>
+<span style="color: #008080">51</span>         title_node = soup.find(<span style="color: #800000">'</span><span style="color: #800000">a</span><span style="color: #800000">'</span>,class_=<span style="color: #800000">'</span><span style="color: #800000">postTitle2</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">52</span>         res_data[<span style="color: #800000">'</span><span style="color: #800000">title</span><span style="color: #800000">'</span>] =<span style="color: #000000"> title_node.get_text()
+</span><span style="color: #008080">53</span> 
+<span style="color: #008080">54</span>         <span style="color: #008000">#</span><span style="color: #008000">div id='topics'</span>
+<span style="color: #008080">55</span>         summary_node = soup.find(<span style="color: #800000">'</span><span style="color: #800000">div</span><span style="color: #800000">'</span>,class_=<span style="color: #800000">"</span><span style="color: #800000">post</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">56</span>         res_data[<span style="color: #800000">'</span><span style="color: #800000">summary</span><span style="color: #800000">'</span>] =<span style="color: #000000"> summary_node
+</span><span style="color: #008080">57</span> 
+<span style="color: #008080">58</span>         new_tag = soup.new_tag(<span style="color: #800000">"</span><span style="color: #800000">body</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">59</span>         new_tag.string = summary_node.encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">60</span> <span style="color: #000000">        soup.body.replace_with(new_tag)
+</span><span style="color: #008080">61</span>         res_data[<span style="color: #800000">'</span><span style="color: #800000">template</span><span style="color: #800000">'</span>] =<span style="color: #000000"> soup
+</span><span style="color: #008080">62</span> 
+<span style="color: #008080">63</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> res_data
+</span><span style="color: #008080">64</span> 
+<span style="color: #008080">65</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> parseUrls(self,root_url,html_cont):
+</span><span style="color: #008080">66</span>         soup = BeautifulSoup(html_cont, <span style="color: #800000">'</span><span style="color: #800000">html.parser</span><span style="color: #800000">'</span>, from_encoding=<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">67</span>         new_urls =<span style="color: #000000"> self._get_new_urls(root_url, soup)
+</span><span style="color: #008080">68</span>         <span style="color: #0000ff">return</span> new_urls</pre>
+</div>
+<span class="cnblogs_code_collapse">parser_manager.py</span></div>
+<p><strong>output_manager.py 输出html网页全部内容文件（包括css,png,js等）</strong></p>
+<div class="cnblogs_code"><img alt="" class="code_img_closed" id="code_img_closed_ec425f5e-ccde-4a36-9b7a-225138d6a7af" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif"/><img alt="" class="code_img_opened" id="code_img_opened_ec425f5e-ccde-4a36-9b7a-225138d6a7af" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" style="display: none"/>
+<div class="cnblogs_code_hide" id="cnblogs_code_open_ec425f5e-ccde-4a36-9b7a-225138d6a7af">
+<pre><span style="color: #008080"> 1</span> <span style="color: #008000">#</span><span style="color: #008000"> -*- coding:utf-8 -*-</span>
+<span style="color: #008080"> 2</span> <span style="color: #008000">#</span><span style="color: #008000"> !/bin/sh</span>
+<span style="color: #008080"> 3</span> <span style="color: #0000ff">import</span><span style="color: #000000"> os
+</span><span style="color: #008080"> 4</span> <span style="color: #0000ff">import</span><span style="color: #000000"> urllib
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">from</span> com.crawlers.parser_manager <span style="color: #0000ff">import</span><span style="color: #000000"> ParserManager
+</span><span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span> <span style="color: #0000ff">class</span><span style="color: #000000"> OutputManager(object):
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span>     <span style="color: #0000ff">def</span> <span style="color: #800080">__init__</span><span style="color: #000000">(self):
+</span><span style="color: #008080">11</span>         self.datas =<span style="color: #000000"> []
+</span><span style="color: #008080">12</span> 
+<span style="color: #008080">13</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> collect_data(self, data):
+</span><span style="color: #008080">14</span>         <span style="color: #0000ff">if</span> data <span style="color: #0000ff">is</span><span style="color: #000000"> None:
+</span><span style="color: #008080">15</span>             <span style="color: #0000ff">return</span>
+<span style="color: #008080">16</span> <span style="color: #000000">        self.datas.append(data)
+</span><span style="color: #008080">17</span> 
+<span style="color: #008080">18</span> 
+<span style="color: #008080">19</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> output_html(self):
+</span><span style="color: #008080">20</span>         <span style="color: #0000ff">for</span> data <span style="color: #0000ff">in</span><span style="color: #000000"> self.datas:
+</span><span style="color: #008080">21</span>             fout = open(<span style="color: #800000">'</span><span style="color: #800000">output/%s.txt</span><span style="color: #800000">'</span>%data[<span style="color: #800000">'</span><span style="color: #800000">title</span><span style="color: #800000">'</span>].encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span>), <span style="color: #800000">'</span><span style="color: #800000">w</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">22</span>             fout.write(<span style="color: #800000">"</span><span style="color: #800000">%s</span><span style="color: #800000">"</span> % data[<span style="color: #800000">'</span><span style="color: #800000">summary</span><span style="color: #800000">'</span>].encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">))
+</span><span style="color: #008080">23</span> <span style="color: #000000">            fout.close()
+</span><span style="color: #008080">24</span>             url = data[<span style="color: #800000">'</span><span style="color: #800000">url</span><span style="color: #800000">'</span>].encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">25</span>             pagename = data[<span style="color: #800000">'</span><span style="color: #800000">title</span><span style="color: #800000">'</span>].encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">26</span>             <span style="color: #008000">#</span><span style="color: #008000"> html_code = urllib.urlopen(url).read()</span>
+<span style="color: #008080">27</span>             hp =<span style="color: #000000"> ParserManager()
+</span><span style="color: #008080">28</span>             html_code = data[<span style="color: #800000">'</span><span style="color: #800000">template</span><span style="color: #800000">'</span>].encode(<span style="color: #800000">'</span><span style="color: #800000">utf-8</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">29</span>             html_code =<span style="color: #000000"> hp.unescape(html_code)
+</span><span style="color: #008080">30</span> <span style="color: #000000">            hp.feed(html_code)
+</span><span style="color: #008080">31</span> <span style="color: #000000">            hp.close()
+</span><span style="color: #008080">32</span>             durl = url.rsplit(<span style="color: #800000">'</span><span style="color: #800000">/</span><span style="color: #800000">'</span>,1<span style="color: #000000">)[0]
+</span><span style="color: #008080">33</span> <span style="color: #000000">            self.download(pagename,html_code,durl,hp.links)
+</span><span style="color: #008080">34</span> 
+<span style="color: #008080">35</span> 
+<span style="color: #008080">36</span>     <span style="color: #0000ff">def</span><span style="color: #000000"> download(self,pagename,html_code,durl,links):
+</span><span style="color: #008080">37</span>         <span style="color: #0000ff">if</span> <span style="color: #0000ff">not</span> os.path.exists(<span style="color: #800000">'</span><span style="color: #800000">output/</span><span style="color: #800000">'</span>+pagename+<span style="color: #800000">'</span><span style="color: #800000">_files</span><span style="color: #800000">'</span><span style="color: #000000">):
+</span><span style="color: #008080">38</span>             os.mkdir(<span style="color: #800000">'</span><span style="color: #800000">output/</span><span style="color: #800000">'</span>+pagename+<span style="color: #800000">'</span><span style="color: #800000">_files</span><span style="color: #800000">'</span><span style="color: #000000">)
+</span><span style="color: #008080">39</span>             upurl = durl.rsplit(<span style="color: #800000">'</span><span style="color: #800000">/</span><span style="color: #800000">'</span>,1<span style="color: #000000">)[0]
+</span><span style="color: #008080">40</span>             <span style="color: #0000ff">for</span> link <span style="color: #0000ff">in</span><span style="color: #000000"> links:
+</span><span style="color: #008080">41</span>                 fname = link.split(<span style="color: #800000">'</span><span style="color: #800000">/</span><span style="color: #800000">'</span>)[-1<span style="color: #000000">]
+</span><span style="color: #008080">42</span>                 fname = fname.split(<span style="color: #800000">'</span><span style="color: #800000">?</span><span style="color: #800000">'</span><span style="color: #000000">)[0]
+</span><span style="color: #008080">43</span>                 localpath = <span style="color: #800000">'</span><span style="color: #800000">%s%s</span><span style="color: #800000">'</span> % (<span style="color: #800000">'</span><span style="color: #800000">output/</span><span style="color: #800000">'</span>+pagename+<span style="color: #800000">'</span><span style="color: #800000">_files/</span><span style="color: #800000">'</span><span style="color: #000000">,fname)
+</span><span style="color: #008080">44</span>                 replacelocalpath = <span style="color: #800000">'</span><span style="color: #800000">%s%s</span><span style="color: #800000">'</span> % (pagename + <span style="color: #800000">'</span><span style="color: #800000">_files/</span><span style="color: #800000">'</span><span style="color: #000000">, fname)
+</span><span style="color: #008080">45</span>                 <span style="color: #008000">#</span><span style="color: #008000"> if link[0:3] == '../':</span>
+<span style="color: #008080">46</span>                 <span style="color: #008000">#</span><span style="color: #008000">         downlink = "http:" + link</span>
+<span style="color: #008080">47</span>                 <span style="color: #008000">#</span><span style="color: #008000"> else:</span>
+<span style="color: #008080">48</span>                 <span style="color: #008000">#</span><span style="color: #008000">         downlink = link</span>
+<span style="color: #008080">49</span>                 <span style="color: #0000ff">try</span><span style="color: #000000">:
+</span><span style="color: #008080">50</span>                     urllib.urlretrieve(<span style="color: #800000">"</span><span style="color: #800000">http://www.cnblogs.com</span><span style="color: #800000">"</span> +<span style="color: #000000"> link,localpath)
+</span><span style="color: #008080">51</span>                 <span style="color: #0000ff">except</span><span style="color: #000000"> Exception,error:
+</span><span style="color: #008080">52</span>                     <span style="color: #0000ff">print</span> <span style="color: #800000">'</span><span style="color: #800000">download error:</span><span style="color: #800000">'</span><span style="color: #000000">, error
+</span><span style="color: #008080">53</span>                 <span style="color: #0000ff">else</span><span style="color: #000000">:
+</span><span style="color: #008080">54</span>                     <span style="color: #0000ff">print</span> <span style="color: #800000">'</span><span style="color: #800000">download </span><span style="color: #800000">'</span>+<span style="color: #000000">fname
+</span><span style="color: #008080">55</span>                     html_code =<span style="color: #000000"> html_code.replace(link,replacelocalpath)
+</span><span style="color: #008080">56</span>                 open(<span style="color: #800000">'</span><span style="color: #800000">output/</span><span style="color: #800000">'</span>+pagename+<span style="color: #800000">'</span><span style="color: #800000">.html</span><span style="color: #800000">'</span>,<span style="color: #800000">'</span><span style="color: #800000">w</span><span style="color: #800000">'</span><span style="color: #000000">).write(html_code)
+</span><span style="color: #008080">57</span>         <span style="color: #0000ff">return</span> True</pre>
+</div>
+<span class="cnblogs_code_collapse">output_manager.py</span></div>
+<p> </p>
+<p><strong>最后输出：</strong></p>
+<p><strong><img alt="" src="http://images2015.cnblogs.com/blog/618582/201704/618582-20170425150222303-871238010.png"/></strong></p>
+<p> </p>
+<p>&gt;结束</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6762184,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a href="javascript:void(0);" id="green_channel_follow" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');">关注我</a>
+<a href="javascript:void(0);" id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;">收藏该文</a>
+<a href="javascript:void(0);" id="green_channel_weibo" onclick="ShareToTsina()" title="分享至新浪微博"><img alt="" src="//common.cnblogs.com/images/icon_weibo_24.png"/></a>
+<a href="javascript:void(0);" id="green_channel_wechat" onclick="shareOnWechat()" title="分享至微信"><img alt="" src="//common.cnblogs.com/images/wechat.png"/></a>
+</div>
+<div id="author_profile">
+<div class="author_profile_info" id="author_profile_info">
+<a href="http://home.cnblogs.com/u/zhuyuliang/" target="_blank"><img alt="" class="author_avatar" src="//pic.cnblogs.com/face/618582/20150505091020.png"/></a>
+<div class="author_profile_info" id="author_profile_detail">
+<a href="http://home.cnblogs.com/u/zhuyuliang/">zhuyuliang</a><br/>
+<a href="http://home.cnblogs.com/u/zhuyuliang/followees">关注 - 12</a><br/>
+<a href="http://home.cnblogs.com/u/zhuyuliang/followers">粉丝 - 2</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">
+<div class="diggit" onclick="votePost(6762184,'Digg')">
+<span class="diggnum" id="digg_count">0</span>
+</div>
+<div class="buryit" onclick="votePost(6762184,'Bury')">
+<span class="burynum" id="bury_count">0</span>
+</div>
+<div class="clear"></div>
+<div class="diggword" id="digg_tips">
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a class="p_n_p_prefix" href="http://www.cnblogs.com/zhuyuliang/p/5218635.html">« </a> 上一篇：<a href="http://www.cnblogs.com/zhuyuliang/p/5218635.html" title="发布于2016-02-25 22:34">Android开发代码规范</a><br/></div>
+</div>
+</div>
+<div class="postDesc">posted @ <span id="post-date">2017-04-25 15:03</span> <a href="http://www.cnblogs.com/zhuyuliang/">zhuyuliang</a> 阅读(<span id="post_view_count">115</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6762184" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(6762184);return false;">收藏</a></div>
+</div>

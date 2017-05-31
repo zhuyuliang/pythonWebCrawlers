@@ -1,0 +1,170 @@
+<div class="post">
+<h1 class="postTitle">
+<a class="postTitle2" href="http://www.cnblogs.com/zhuyuliang/p/5212746.html" id="cb_post_title_url">Java设计模式-Builder生成器模式</a>
+</h1>
+<div class="clear"></div>
+<div class="postBody">
+<div id="cnblogs_post_body"><p><strong>概念：</strong></p>
+<p>　　生成器模式也称之为建造者模式。生成器模式的意图在于将一个复杂的构建与其表示相分离，构建与产品分离。</p>
+<p><strong>UML:</strong></p>
+<p><img alt="" src="http://images2015.cnblogs.com/blog/618582/201602/618582-20160224131758349-1851732718.png"/></p>
+<p>　　　　Ibuild接口清晰地反映了创建产品Product的流程。</p>
+<p>　　　　生成器模式涉及4个关键角色：产品（Product）,抽象生成器（IBuilder），具体生成器（Builder），指挥者（Director）.</p>
+<p> </p>
+<p><strong>代码演示：</strong></p>
+<p>(1)定义1个产品类</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Unit1{...}
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Unit2{...}
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Unit3{...}
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Product
+{
+      Unit1 u1;
+      Unit2 u2;
+      Unit3 u3;
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div></div>
+<p>　　(2)定义n个生成器Builder类</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">interface</span><span style="color: #000000;"> IBuild
+{
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit1();
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit2();
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit3();
+      </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Product composite();<br/>      public Product create();    
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> BuildProduct <span style="color: #0000ff;">implements</span><span style="color: #000000;"> IBuild
+{
+      Product p </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Product();
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit1(){
+           </span><span style="color: #008000;">//</span><span style="color: #008000;">p.u1 = ...  </span>
+<span style="color: #000000;">      }<br/>      public Product create(){<br/>           return composite();<br/>      }  
+      ......
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> BuildProduct1 <span style="color: #0000ff;">implements</span><span style="color: #000000;"> IBuild
+{
+      Product p </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Product();
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit1(){
+           </span><span style="color: #008000;">//</span><span style="color: #008000;">p.u1 = ...  </span>
+<span style="color: #000000;">      }  
+      ......
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div></div>
+<p>　　(3)定义一个统一调度类也叫指挥者（Director）.是对生成器接口IBuilder的封装。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Director
+{
+      </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> IBuild build;
+      </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Director(IBuild build){
+             </span><span style="color: #0000ff;">this</span>.build =<span style="color: #000000;"> buid;  
+      }
+     </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Product build(){
+             build.create();
+      }
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(){
+            IBuild build </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> BuildProduct();
+            Director direcotr </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Director(build);
+            Prodcut p </span>=<span style="color: #000000;"> director.build();   
+      }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div></div>
+<p> </p>
+<p><strong>另一种实现方式：</strong></p>
+<p>　　　　　　利用Product1派生类方法，也可以实现类似的生成器功能。</p>
+<p>           <img alt="" src="http://images2015.cnblogs.com/blog/618582/201602/618582-20160224133722880-49533329.png"/></p>
+<p><strong>代码演示：</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">定义抽象生成器</span>
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Product
+{
+         Unit1 u1;
+         Unit2 u2;
+         ....
+         </span><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit1();
+         </span><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> createUnit2();
+         ...
+         </span><span style="color: #0000ff;">abstract</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> composite();
+}
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义具体生成器</span>
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> BuildProduct <span style="color: #0000ff;">extends</span><span style="color: #000000;"> Product
+{
+        </span><span style="color: #0000ff;">void</span> createUnit1() { u1=<span style="color: #000000;">.... }
+        ....
+         </span><span style="color: #0000ff;">void</span> composite(){ <span style="color: #008000;">/*</span><span style="color: #008000;">关联 u1, u2, u3</span><span style="color: #008000;">*/</span><span style="color: #000000;">}
+}
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义指挥者类</span>
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Director
+{
+        Product p;
+        </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Director(Product p)
+        {
+                 </span><span style="color: #0000ff;">this</span>.p =<span style="color: #000000;"> p;
+         }
+        </span><span style="color: #0000ff;">void</span><span style="color: #000000;"> build()
+        {
+              p.createUnit1();
+              p.createUnit2();
+              ....
+              p.composite();
+        }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img alt="复制代码" src="//common.cnblogs.com/images/copycode.gif"/></a></span></div></div>
+<p> </p>
+<p><strong>总之，对于生成器模式创建复杂对象而言，主要原则是对象构造过程与表示相分离。</strong></p>
+<p> </p>
+<p> </p>
+<p>     </p>
+<p> </p>
+<p> </p>
+<p>     </p>
+<p>                 </p>
+<p>　　　　　  </p>
+<p> </p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/zhuyuliang/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5212746,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a href="javascript:void(0);" id="green_channel_follow" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');">关注我</a>
+<a href="javascript:void(0);" id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;">收藏该文</a>
+<a href="javascript:void(0);" id="green_channel_weibo" onclick="ShareToTsina()" title="分享至新浪微博"><img alt="" src="//common.cnblogs.com/images/icon_weibo_24.png"/></a>
+<a href="javascript:void(0);" id="green_channel_wechat" onclick="shareOnWechat()" title="分享至微信"><img alt="" src="//common.cnblogs.com/images/wechat.png"/></a>
+</div>
+<div id="author_profile">
+<div class="author_profile_info" id="author_profile_info">
+<a href="http://home.cnblogs.com/u/zhuyuliang/" target="_blank"><img alt="" class="author_avatar" src="//pic.cnblogs.com/face/618582/20150505091020.png"/></a>
+<div class="author_profile_info" id="author_profile_detail">
+<a href="http://home.cnblogs.com/u/zhuyuliang/">zhuyuliang</a><br/>
+<a href="http://home.cnblogs.com/u/zhuyuliang/followees">关注 - 12</a><br/>
+<a href="http://home.cnblogs.com/u/zhuyuliang/followers">粉丝 - 2</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="follow('049fbf73-4db7-e311-8d02-90b11c0b17d6');return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">
+<div class="diggit" onclick="votePost(5212746,'Digg')">
+<span class="diggnum" id="digg_count">0</span>
+</div>
+<div class="buryit" onclick="votePost(5212746,'Bury')">
+<span class="burynum" id="bury_count">0</span>
+</div>
+<div class="clear"></div>
+<div class="diggword" id="digg_tips">
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a class="p_n_p_prefix" href="http://www.cnblogs.com/zhuyuliang/p/5007016.html">« </a> 上一篇：<a href="http://www.cnblogs.com/zhuyuliang/p/5007016.html" title="发布于2015-11-30 14:12">AndroidStudio支持新的NDK的操作使用</a><br/><a class="p_n_p_prefix" href="http://www.cnblogs.com/zhuyuliang/p/5212821.html">» </a> 下一篇：<a href="http://www.cnblogs.com/zhuyuliang/p/5212821.html" title="发布于2016-02-24 14:21">android studio快捷键</a><br/></div>
+</div>
+</div>
+<div class="postDesc">posted @ <span id="post-date">2016-02-24 14:06</span> <a href="http://www.cnblogs.com/zhuyuliang/">zhuyuliang</a> 阅读(<span id="post_view_count">178</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5212746" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5212746);return false;">收藏</a></div>
+</div>
